@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大建桥Facemash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/static/css/base.css" rel="stylesheet" media="screen">
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <a class="brand" href="#">大建桥Facemash</a>
+    <ul class="nav">
+      <li class="active"><a href="/">首页</a></li>
+      <li><a href="/top">TOP10</a></li>
+    </ul>
+    <div class="pull-right navbar-text">
+        已投票 {{ total }} 次
+    </div>
+
+  </div>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <div class="row">
+                    <div class="span4 offset2">
+                        <a id="img-A" href="javascript:void(0);" title="她比较好看">
+                        <img class="img-rounded" src="/static/images/{{ A['path'] }}" alt="">
+                        </a>
+                    </div>
+                    <div class="span6 text-center">
+                        <p>得分：{{ A["r"] }}</p>
+                        <form id="A" action="/" method="POST">
+                            <input type="hidden" name="a" value="{{ A['id'] }}">
+                            <input type="hidden" name="b" value="{{ B['id'] }}">
+                            <input type="hidden" name="token" value="{{ token }}">
+                            {% module xsrf_form_html() %}
+                            <button class="btn btn-primary">投票给她</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span6">
+                <div class="row">
+                    <div class="span4 offset2">
+                        <a id="img-B" href="javascript:void(0);" title="她比较好看">
+                        <img class="img-rounded" src="/static/images/{{ B['path'] }}" alt="">
+                        </a>
+                    </div>
+                    <div class="span6 text-center">
+                        <p>得分：{{ B["r"] }}</p>
+                        <form id="B" action="/" method="POST">
+                            <input type="hidden" name="a" value="{{ A['id'] }}">
+                            <input type="hidden" name="b" value="{{ B['id'] }}">
+                            <input type="hidden" name="token" value="{{ token }}">
+                            {% module xsrf_form_html() %}
+                            <button class="btn btn-primary">投票给她</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/base.js"></script>
+</body>
+</html>

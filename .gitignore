@@ -1,0 +1,4 @@
+*.pyc
+static/images/*
+*.tag.gz
+torndb.py

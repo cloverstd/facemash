@@ -1,4 +1,4 @@
 *.pyc
 static/images/*
-*.tag.gz
+*.tar.gz
 torndb.py

@@ -6,7 +6,6 @@ from math import pow
 from time import time
 from hashlib import md5
 import torndb
-import memcache
 import os
 
 
@@ -29,6 +28,7 @@ class BaseHandler(tornado.web.RequestHandler):
             from bae.api.memcache import BaeMemcache
             self.cache = BaeMemcache()
         else:
+            import memcache
             self.cache = memcache.Client(['127.0.0.1:11211'], debug=True)
 
     def on_finish(self):
@@ -119,6 +119,7 @@ class TopHandler(BaseHandler):
 class SetUpHandler(BaseHandler):
     def get(self):
         count = self.db.get("SELECT count(*) as count from player;").count
+
         if count != 0:
             self.redirect("/", permanent=True)
             return
@@ -130,4 +131,4 @@ class SetUpHandler(BaseHandler):
             # files.append((name))
         self.db.insertmany("INSERT INTO player (`path`) VALUES (%s);", files)
 
-        self.write("%r" % 1)
+        self.write("%r" % "初始化成功)
